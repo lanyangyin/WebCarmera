@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<meta charset="UTF-8">
+<head>
+    <title>用户摄像头</title>
+    <style>
+        .app__layout {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: black;
+        }
+
+        .app__layout-content {
+            height: inherit;
+        }
+
+        video {
+            min-width: 100%;
+            min-height: auto;
+            width: 100%;
+            height: auto;
+            position: absolute;
+            z-index: 1; /* 设置视频元素的层级，确保列表框显示在视频上方 */
+        }
+
+        /* 内嵌 CSS 样式，设置列表框字体颜色为绿色 */
+        #camera-selector {
+            color: green;
+            position: relative; /* 设置列表框的位置为相对定位，以便调整其层级 */
+            z-index: 2; /* 设置列表框的层级，确保其显示在视频上方 */
+        }
+
+        /* 内嵌 CSS 样式，设置列表框字体颜色为绿色 */
+        #rotate-button {
+            color: green;
+            position: relative; /* 设置列表框的位置为相对定位，以便调整其层级 */
+            z-index: 2; /* 设置列表框的层级，确保其显示在视频上方 */
+        }
+    </style>
+</head>
+<body>
+<div class="app__layout">
+    <main class="app__layout-content" id="video-container">
+        <video id="qr-video"></video>
+        <select id="camera-selector"></select> <!-- 摄像头选择器 -->
+        <button id="rotate-button">旋转视频</button> <!-- 添加旋转视频的按钮 -->
+    </main>
+</div>
+<script>
+    const videoElement = document.getElementById('qr-video');
+    const cameraSelector = document.getElementById('camera-selector');
+    const rotateButton = document.getElementById('rotate-button'); // 获取旋转视频按钮元素
+    let rotationDegree = 0; // 初始旋转角度为0
+
+    const getVideoList = () => {
+        navigator.mediaDevices
+            .enumerateDevices()
+            .then(function (devices) {
+                devices.forEach(function (device) {
+                    if (device.kind === 'videoinput') {
+                        const option = document.createElement('option');
+                        option.value = device.deviceId;
+                        option.text = device.label || `Camera ${cameraSelector.options.length + 1}`;
+                        cameraSelector.appendChild(option);
+                    }
+                });
+            })
+            .catch(function (err) {
+                console.error('Error occurred while enumerating devices: ', err);
+            });
+    };
+
+    const startVideoStream = (deviceId) => {
+        const constraints = {
+            video: {deviceId: deviceId ? {exact: deviceId} : undefined},
+            audio: false
+        };
+
+        navigator.mediaDevices.getUserMedia(constraints)
+            .then(stream => {
+                if ("srcObject" in videoElement) {
+                    videoElement.srcObject = stream;
+                } else {
+                    videoElement.src = window.URL.createObjectURL(stream);
+                }
+                videoElement.onloadedmetadata = function (e) {
+                    videoElement.play();
+                };
+            })
+            .catch(err => {
+                console.error('Error occurred while starting video stream: ', err);
+            });
+    };
+
+    cameraSelector.addEventListener('change', function () {
+        const selectedDeviceId = this.value;
+        if (selectedDeviceId) {
+            // 关闭旧的视频流
+            const oldStream = videoElement.srcObject;
+            if (oldStream) {
+                const tracks = oldStream.getTracks();
+                tracks.forEach(track => track.stop());
+            }
+
+            // 开始新的视频流
+            startVideoStream(selectedDeviceId);
+        }
+    });
+
+    // 旋转视频的函数
+    const rotateVideo = () => {
+        rotationDegree += 90; // 每次点击按钮增加90度
+        videoElement.style.transform = `rotate(${rotationDegree}deg)`;
+    };
+
+    // 将旋转视频函数与按钮的点击事件相关联
+    rotateButton.addEventListener('click', rotateVideo);
+
+    // 初始化页面时获取视频列表并开始默认摄像头的视频流
+    getVideoList();
+    startVideoStream();
+</script>
+</body>
+</html>
