@@ -31,34 +31,58 @@ openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 36
 
 load_cert_chain('./cert.pem', './key.pem')  # 替换为你的证书和私钥路径
 
+
+
 参考
+
 https服务
+
 [Python3开启自带http服务](https://blog.csdn.net/SPACESTUDIO/article/details/86760104)
+
 [Python实现本地电脑启动HTTP服务](https://blog.csdn.net/songpeiying/article/details/131637405)
+
 [Flask: 如何给Python Flask Web服务器添加HTTPS功能](https://geek-docs.com/flask/flask-questions/4_flask_can_you_add_https_functionality_to_a_python_flask_web_server.html#:~:text=Flask: 如何给Python Flask Web服务器添加HTTPS功能 1 什么是HTTPS？ HTTPS是HTTP的安全版本，它使用SSL（Secure Sockets, 如果我们想要强制所有请求都使用HTTPS，无论是在本地开发还是生产环境中，我们可以使用 app.before_request 装饰器来实现这一点： ... 6 使用Nginx代理服务器 ... 更多项目)
+
 [python3搭https服务](https://blog.csdn.net/junbujianwpl/article/details/104405552)
 
 
 调用摄像头
+
 [html5调用摄像头功能](https://segmentfault.com/a/1190000014741852)
+
 [cv2.VideoCapture读取视频或摄像头，并进行保存帧图像或视频](https://blog.csdn.net/weixin_40922285/article/details/102967331)https://blog.csdn.net/weixin_40922285/article/details/102967331
+
 [树莓派/PC实现实时摄像头数据共享—最优方法（搭建网络摄像头）](https://cloud.tencent.com/developer/article/1775772)https://cloud.tencent.com/developer/article/1775772
+
 [opencv python 调用网络摄像头 （局域网）](https://blog.csdn.net/weixin_40959890/article/details/114527379)https://blog.csdn.net/weixin_40959890/article/details/114527379
+
 [python 通过socket通讯实现实时摄像头视频传输](https://blog.csdn.net/dabo_520/article/details/129941397)https://blog.csdn.net/dabo_520/article/details/129941397
+
 [python 传输摄像头](https://blog.51cto.com/u_16213300/8745574#:~:text=Python传输摄像头实现教程 1 1. 整体流程 为了实现Python传输摄像头的功能，我们可以按照以下步骤进行操作： 接下来，我们将逐步讲解每个步骤需要进行的操作。 2 2. 代码示例 下面是一个完整的代码示例，用于实现Python传输摄像头功能： ... 4 4. 甘特图 下面是一个使用甘特图表显示的任务时间安排：)https://blog.51cto.com/u_16213300/8745574#:~:text=Python传输摄像头实现教程 1 1. 整体流程 为了实现Python传输摄像头的功能，我们可以按照以下步骤进行操作： 接下来，我们将逐步讲解每个步骤需要进行的操作。 2 2. 代码示例 下面是一个完整的代码示例，用于实现Python传输摄像头功能： ... 4 4. 甘特图 下面是一个使用甘特图表显示的任务时间安排：
+
 [html5+JS调用摄像头示例](https://blog.csdn.net/cnds123/article/details/122515662)https://blog.csdn.net/cnds123/article/details/122515662
+
 [利用HTML5 MediaDevices API调用手机摄像头并结合JavaScript库实现人脸识别](https://segmentfault.com/a/1190000044698126)https://segmentfault.com/a/1190000044698126
+
 [Web调用电脑摄像头【实时画面、拍照、截图】](https://blog.csdn.net/qq_45021180/article/details/111561634)https://blog.csdn.net/qq_45021180/article/details/111561634
+
 [Django OpenCV 在 Django 网页中实时从摄像头进行视频流](https://deepinout.com/django/django-questions/707_django_opencv_live_stream_from_camera_in_django_webpage.html)https://deepinout.com/django/django-questions/707_django_opencv_live_stream_from_camera_in_django_webpage.html
+
 [Python实现网页端显示摄像头拍摄视频](https://blog.csdn.net/private_void_main/article/details/89598006)https://blog.csdn.net/private_void_main/article/details/89598006
+
 [JS获取电脑摄像头，麦克风，点击切换摄像头设备](https://blog.csdn.net/qq_36947128/article/details/118526979)
+
 [前端调取摄像头并实现拍照功能](https://zhuanlan.zhihu.com/p/661985982)
+
 [如何使用JavaScript访问设备摄像头（前后）](https://cloud.tencent.com/developer/article/1641490)
 
 
+
+
 实例
-[使用 Chrome、Safari 或 Firefox 的在线二维码扫描相机
-](https://online-qr-scanner.net/zh-cn/camera.html)https://online-qr-scanner.net/zh-cn/camera.html
+
+[使用 Chrome、Safari 或 Firefox 的在线二维码扫描相机](https://online-qr-scanner.net/zh-cn/camera.html)https://online-qr-scanner.net/zh-cn/camera.html
+
 
 
 
