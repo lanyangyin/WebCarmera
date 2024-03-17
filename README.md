@@ -35,9 +35,8 @@ load_cert_chain('./cert.pem', './key.pem')  # 替换为你的证书和私钥路�
 https服务
 [Python3开启自带http服务](https://blog.csdn.net/SPACESTUDIO/article/details/86760104)
 [Python实现本地电脑启动HTTP服务](https://blog.csdn.net/songpeiying/article/details/131637405)
-https://blog.csdn.net/junbujianwpl/article/details/104405552
-https://geek-docs.com/flask/flask-questions/4_flask_can_you_add_https_functionality_to_a_python_flask_web_server.html#:~:text=Flask: 如何给Python Flask Web服务器添加HTTPS功能 1 什么是HTTPS？ HTTPS是HTTP的安全版本，它使用SSL（Secure Sockets, 如果我们想要强制所有请求都使用HTTPS，无论是在本地开发还是生产环境中，我们可以使用 app.before_request 装饰器来实现这一点： ... 6 使用Nginx代理服务器 ... 更多项目
-
+[Flask: 如何给Python Flask Web服务器添加HTTPS功能](https://geek-docs.com/flask/flask-questions/4_flask_can_you_add_https_functionality_to_a_python_flask_web_server.html#:~:text=Flask: 如何给Python Flask Web服务器添加HTTPS功能 1 什么是HTTPS？ HTTPS是HTTP的安全版本，它使用SSL（Secure Sockets, 如果我们想要强制所有请求都使用HTTPS，无论是在本地开发还是生产环境中，我们可以使用 app.before_request 装饰器来实现这一点： ... 6 使用Nginx代理服务器 ... 更多项目)
+[python3搭https服务](https://blog.csdn.net/junbujianwpl/article/details/104405552)
 
 
 调用摄像头
@@ -53,6 +52,8 @@ https://geek-docs.com/flask/flask-questions/4_flask_can_you_add_https_functional
 [Django OpenCV 在 Django 网页中实时从摄像头进行视频流](https://deepinout.com/django/django-questions/707_django_opencv_live_stream_from_camera_in_django_webpage.html)https://deepinout.com/django/django-questions/707_django_opencv_live_stream_from_camera_in_django_webpage.html
 [Python实现网页端显示摄像头拍摄视频](https://blog.csdn.net/private_void_main/article/details/89598006)https://blog.csdn.net/private_void_main/article/details/89598006
 [JS获取电脑摄像头，麦克风，点击切换摄像头设备](https://blog.csdn.net/qq_36947128/article/details/118526979)
+[前端调取摄像头并实现拍照功能](https://zhuanlan.zhihu.com/p/661985982)
+[如何使用JavaScript访问设备摄像头（前后）](https://cloud.tencent.com/developer/article/1641490)
 
 
 实例
