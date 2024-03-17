@@ -81,8 +81,9 @@ https服务
 
 实例
 
-[使用 Chrome、Safari 或 Firefox 的在线二维码扫描相机](https://online-qr-scanner.net/zh-cn/camera.html)https://online-qr-scanner.net/zh-cn/camera.html
+[使用 Chrome、Safari 或 Firefox 的在线二维码扫描相机](https://online-qr-scanner.net/zh-cn/camera.html)
 
+[纯H5实现扫一扫功能，亲测PC和手机端可用](https://www.jianshu.com/p/c84a0135824b)
 
 
 
