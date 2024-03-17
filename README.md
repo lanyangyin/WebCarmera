@@ -41,8 +41,7 @@ https://geek-docs.com/flask/flask-questions/4_flask_can_you_add_https_functional
 
 
 调用摄像头
-https://segmentfault.com/a/1190000014741852
-https://blog.csdn.net/cnds123/article/details/122515662
+[html5调用摄像头功能](https://segmentfault.com/a/1190000014741852)
 [cv2.VideoCapture读取视频或摄像头，并进行保存帧图像或视频](https://blog.csdn.net/weixin_40922285/article/details/102967331)https://blog.csdn.net/weixin_40922285/article/details/102967331
 [树莓派/PC实现实时摄像头数据共享—最优方法（搭建网络摄像头）](https://cloud.tencent.com/developer/article/1775772)https://cloud.tencent.com/developer/article/1775772
 [opencv python 调用网络摄像头 （局域网）](https://blog.csdn.net/weixin_40959890/article/details/114527379)https://blog.csdn.net/weixin_40959890/article/details/114527379
@@ -53,9 +52,12 @@ https://blog.csdn.net/cnds123/article/details/122515662
 [Web调用电脑摄像头【实时画面、拍照、截图】](https://blog.csdn.net/qq_45021180/article/details/111561634)https://blog.csdn.net/qq_45021180/article/details/111561634
 [Django OpenCV 在 Django 网页中实时从摄像头进行视频流](https://deepinout.com/django/django-questions/707_django_opencv_live_stream_from_camera_in_django_webpage.html)https://deepinout.com/django/django-questions/707_django_opencv_live_stream_from_camera_in_django_webpage.html
 [Python实现网页端显示摄像头拍摄视频](https://blog.csdn.net/private_void_main/article/details/89598006)https://blog.csdn.net/private_void_main/article/details/89598006
+[JS获取电脑摄像头，麦克风，点击切换摄像头设备](https://blog.csdn.net/qq_36947128/article/details/118526979)
 
 
-
+实例
+[使用 Chrome、Safari 或 Firefox 的在线二维码扫描相机
+](https://online-qr-scanner.net/zh-cn/camera.html)https://online-qr-scanner.net/zh-cn/camera.html
 
 
 
