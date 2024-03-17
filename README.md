@@ -30,7 +30,7 @@ openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 36
 总的来说，这些命令都是用于生成 SSL/TLS 证书和密钥。第一个命令生成自签名的 X.509 格式证书，而第二个和第三个命令生成证书请求 (CSR)，这些请求可以发送给证书颁发机构 (CA) 进行签名，或者用于创建自签名证书。
 
 ### 使用证书和私钥开启https
-```base
+```python
     context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
     context.load_cert_chain('./cert.pem', './key.pem')  # 替换为你的证书和私钥路径
     app.run(host='localhost', port=port, ssl_context=context, debug=True)
