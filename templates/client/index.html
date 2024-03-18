@@ -43,7 +43,7 @@
 <body>
 <div class="app__layout">
     <main class="app__layout-content" id="video-container">
-        <video id="qr-video"></video>
+        <video id="qr-video" style="transform: rotate({{ camera_rotate }}deg);"></video>
         <select id="camera-selector"></select> <!-- 摄像头选择器 -->
         <button id="rotate-button">旋转视频</button> <!-- 添加旋转视频的按钮 -->
     </main>
