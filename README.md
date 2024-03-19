@@ -1,5 +1,7 @@
 # WebCarmera
 
+基于python3.11
+
 ## 用于在浏览器中调用用户设备和服务器端的摄像头
 
 ### 这里有三个不同的 OpenSSL 命令，用于生成 SSL/TLS 证书和密钥。让我们逐个解释每个命令的参数：
@@ -48,16 +50,40 @@ openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 36
 
 # 使用
 
+## 配置环境
+
 ```bash
 python -m pip install -U pip -i https://pypi.tuna.tsinghua.edu.cn/simple
 python -m pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+```
+
+## 启动
+
+```base
 python app.py
 ```
 
-使用 ctrl+c 终止运行
+![image.png](doc/image.png)
+或
+
+```base
+python app.py -p [port]
+```
+
+或
+
+```base
+python app.py --port [port]
+```
+
+默认 port=1881，如果1881和输入的port都不能用则会随机一个port
+
+浏览器网址填：
 
 - https://host:port/server?c=int: 相机编号&r=int：旋转角度
 - https://host:port/client?r=int：旋转角度
+
+## 使用 ctrl+c 终止运行
 
 # 参考
 
