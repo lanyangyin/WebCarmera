@@ -1,5 +1,7 @@
+import getopt
 import socket
 import ssl
+import sys
 
 import cv2
 import numpy as np
@@ -7,13 +9,40 @@ import pyautogui
 from flask import Flask, redirect, request, render_template, Response
 from flask_sslify import SSLify
 
+try:
+    opts, args = getopt.getopt(sys.argv[1:], "p:", ['port='])
+except:
+    opts = []
+
 
 def find_unused_port():
-    # 创建一个临时socket
-    temp_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    temp_socket.bind(('localhost', 0))  # 绑定到本地任意可用端口
-    _, port = temp_socket.getsockname()  # 获取分配的端口
-    temp_socket.close()  # 关闭socket
+    port = 1881
+    for op, value in opts:
+        if op in ("-p", "--port"):
+            try:
+                port = int(value.strip())
+            except:
+                port = 1881
+
+    def is_port_in_use(port):
+        """
+        判断port是否被占用
+        :param port:
+        :return:
+        """
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            try:
+                s.bind(("localhost", port))
+            except socket.error:
+                return True
+            return False
+
+    if is_port_in_use(port):
+        # 创建一个临时socket
+        temp_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        temp_socket.bind(('localhost', 0))  # 绑定到本地任意可用端口
+        _, port = temp_socket.getsockname()  # 获取分配的端口
+        temp_socket.close()  # 关闭socket
     return port
 
 
