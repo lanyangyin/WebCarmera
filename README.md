@@ -48,6 +48,13 @@ openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 36
 
 # 使用
 
+```bash
+python -m pip install -U pip
+python -m pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+python app.py
+```
+
+
 - https://host:port/server?c=int: 相机编号&r=int：旋转角度
 - https://host:port/client?r=int：旋转角度
 

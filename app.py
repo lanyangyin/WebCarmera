@@ -7,7 +7,18 @@ import pyautogui
 from flask import Flask, redirect, request, render_template, Response
 from flask_sslify import SSLify
 
+
+def find_unused_port():
+    # 创建一个临时socket
+    temp_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    temp_socket.bind(('localhost', 0))  # 绑定到本地任意可用端口
+    _, port = temp_socket.getsockname()  # 获取分配的端口
+    temp_socket.close()  # 关闭socket
+    return port
+
+
 host = socket.gethostbyname(socket.gethostname())
+port = find_unused_port()
 app = Flask(__name__)
 sslify = SSLify(app)
 
@@ -84,4 +95,4 @@ def favicon():
 if __name__ == '__main__':
     context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
     context.load_cert_chain('./cert.pem', './key.pem')  # 替换为你的证书和私钥路径
-    app.run(host=host, port=2024, ssl_context=context, debug=True)
+    app.run(host=host, port=port, ssl_context=context, debug=True)
