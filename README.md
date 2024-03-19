@@ -54,6 +54,7 @@ python -m pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/s
 python app.py
 ```
 
+使用 ctrl+c 终止运行
 
 - https://host:port/server?c=int: 相机编号&r=int：旋转角度
 - https://host:port/client?r=int：旋转角度
