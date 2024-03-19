@@ -38,11 +38,13 @@ def find_unused_port():
             return False
 
     if is_port_in_use(port):
-        # 创建一个临时socket
-        temp_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        temp_socket.bind(('localhost', 0))  # 绑定到本地任意可用端口
-        _, port = temp_socket.getsockname()  # 获取分配的端口
-        temp_socket.close()  # 关闭socket
+        port = 1881
+        if is_port_in_use(port):
+            # 创建一个临时socket
+            temp_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            temp_socket.bind(('localhost', 0))  # 绑定到本地任意可用端口
+            _, port = temp_socket.getsockname()  # 获取分配的端口
+            temp_socket.close()  # 关闭socket
     return port
 
 
