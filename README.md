@@ -64,11 +64,14 @@ python app.py
 ```
 
 ![image.png](doc/image.png)
+
 或
 
 ```base
 python app.py -p [port]
 ```
+
+![image.png](doc/image0.png)
 
 或
 
@@ -76,9 +79,15 @@ python app.py -p [port]
 python app.py --port [port]
 ```
 
-默认 port=1881，如果1881和输入的port都不能用则会随机一个port
+![image.png](doc/image1.png)
 
-浏览器网址填：
+默认 port=1881，如果1881和输入的port都被占用时会随机一个port
+
+![image.png](doc/image2.png) ` `` `` `` `` ` ![image.png](doc/image2_.png)
+
+浏览器网址（可以不带url参数）：
+
+- https://host:port
 
 - https://host:port/server?c=int: 相机编号&r=int：旋转角度
 - https://host:port/client?r=int：旋转角度
