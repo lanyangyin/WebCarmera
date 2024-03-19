@@ -49,7 +49,7 @@ openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 36
 # 使用
 
 ```bash
-python -m pip install -U pip
+python -m pip install -U pip -i https://pypi.tuna.tsinghua.edu.cn/simple
 python -m pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 python app.py
 ```
