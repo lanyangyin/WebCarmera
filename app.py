@@ -28,6 +28,7 @@ def get_local_ip_addresses():
     ip_addresses.append("localhost")
     return ip_addresses
 
+
 def get_host():
     host = '0'
     ip_addresses = get_local_ip_addresses()
@@ -45,6 +46,7 @@ def get_host():
         else:
             return host
     return "127.0.0.1"
+
 
 def find_unused_port():
     port = 1881
@@ -119,7 +121,8 @@ def video_feed(camera_index):
 def server_():
     camera_index = request.args.get('c', default='0', type=int)
     camera_rotate = request.args.get('r', default='0', type=int)
-    return render_template('server/index.html', selected_camera=camera_index, camera_rotate=camera_rotate)  # 将相机列表传递到模板中
+    return render_template('server/index.html', selected_camera=camera_index,
+                           camera_rotate=camera_rotate)  # 将相机列表传递到模板中
 
 
 def screen():
@@ -157,7 +160,7 @@ def favicon():
 if __name__ == '__main__':
     context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
     context.load_cert_chain('./cert.pem', './key.pem')  # 替换为你的证书和私钥路径
+    ## 将下面的注释去掉可以在运行时显示IP地址
     # for ip in get_local_ip_addresses():
     #     print(ip)
     app.run(host=host, port=port, ssl_context=context, debug=True)
-
