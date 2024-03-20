@@ -2,24 +2,12 @@
 <meta charset="UTF-8">
 <html>
 <head>
-    <title>服务端摄像头</title>
+    <title>服务端屏幕</title>
     <style>
-        {#.app__layout {#}
-        {#    position: absolute;#}
-        {#    width: 100%;#}
-        {#    height: 100%;#}
-        {#    overflow: hidden;#}
-        {#    background-color: black;#}
-        {#}#}
-        {##}
-        {#.app__layout-content {#}
-        {#    height: inherit;#}
-        {#}#}
-
         img {
-            min-width: 100%;
+            min-width: auto;
             min-height: auto;
-            width: auto;
+            width: {{ zoom }}%;
             height: auto;
             position: absolute;
             z-index: 1; /* 设置视频元素的层级，确保列表框显示在视频上方 */
@@ -27,7 +15,6 @@
 
         /* 内嵌 CSS 样式，设置列表框字体颜色为绿色 */
         #camera-selector {
-            width: auto;
             color: green;
             position: relative; /* 设置列表框的位置为相对定位，以便调整其层级 */
             z-index: 2; /* 设置列表框的层级，确保其显示在视频上方 */
@@ -37,10 +24,11 @@
 <body>
 <div class="app__layout">
     <main class="app__layout-content" id="video-container">
-        <img src="/video_server/{{ selected_camera }}" style="transform: rotate({{ camera_rotate }}deg);">
+        <img id="screen" src="/video_screen">
         <button id="camera-selector" onclick="redirectToLocalhost()">返回首页</button>
     </main>
 </div>
+<iframe id="rame" src="https://www.baidu.com" width="1000" height="1600" frameborder="0"></iframe>
 <script>
     function redirectToLocalhost() {
         window.location.href = "/";

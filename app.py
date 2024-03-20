@@ -99,7 +99,8 @@ def index():
     return render_template('index.html')
 
 
-def generate_frames(camera_index):
+# -------------------服务器端摄像头------------------
+def camera_frames(camera_index):
     camera = cv2.VideoCapture(camera_index)  # 打开摄像头，参数0表示默认摄像头
     while True:
         success, frame = camera.read()  # 读取摄像头帧
@@ -112,9 +113,9 @@ def generate_frames(camera_index):
     camera.release()
 
 
-@app.route('/video_feed/<int:camera_index>')
-def video_feed(camera_index):
-    return Response(generate_frames(camera_index), mimetype='multipart/x-mixed-replace; boundary=frame')
+@app.route('/video_server/<int:camera_index>')
+def video_server(camera_index):
+    return Response(camera_frames(camera_index), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
 @app.route('/server')
@@ -125,6 +126,7 @@ def server_():
                            camera_rotate=camera_rotate)  # 将相机列表传递到模板中
 
 
+# -------------------------------服务器端屏幕pyautogui共享-------------------------------
 def screen():
     while True:
         # 截屏
@@ -140,16 +142,51 @@ def screen():
         yield (b'--frame\r\n Content-Type: image/jpeg\r\n\r\n' + frame)
 
 
-@app.route('/screen_sharing')
-def video_fed():
+@app.route('/video_screen')
+def video_screen():
     # 分帧推送截屏图像数据到前端
     return Response(screen(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
+@app.route('/screen')
+def screen_():
+    zoom = request.args.get('z', default='1', type=float)
+    try:
+        zoom = float(zoom)
+        if zoom < 0:
+            zoom = 1/abs(zoom) * 100
+        elif zoom > 0:
+            zoom = zoom * 100
+        else:
+            zoom = 100
+    except:
+        zoom = 100
+    return render_template('screen/index.html', zoom=zoom)  # 将相机列表传递到模板中
+
+
+# ------------------------客户端摄像头---------------------------------
 @app.route('/client')
 def client():
     camera_rotate = request.args.get('r', default='0', type=int)
     return render_template('client/index.html', camera_rotate=camera_rotate)
+
+
+# -------------------------------内嵌浏览器------------------------------
+@app.route('/web')
+def web_():
+    zoom = request.args.get('z', default='1', type=float)
+    try:
+        zoom = float(zoom)
+        if zoom < 0:
+            zoom = 1/abs(zoom) * 100
+        elif zoom > 0:
+            zoom = zoom * 100
+        else:
+            zoom = 100
+    except:
+        zoom = 100
+    url = request.args.get('u', default='https://www.bilibili.com/', type=str)
+    return render_template('inweb/index.html', zoom=zoom, url=url)  # 将相机列表传递到模板中
 
 
 @app.route('/favicon.ico')
@@ -160,7 +197,7 @@ def favicon():
 if __name__ == '__main__':
     context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
     context.load_cert_chain('./cert.pem', './key.pem')  # 替换为你的证书和私钥路径
-    ## 将下面的注释去掉可以在运行时显示IP地址
+    ## 将下面的两个注释的“#”去掉可以在运行时显示IP地址
     # for ip in get_local_ip_addresses():
     #     print(ip)
     app.run(host=host, port=port, ssl_context=context, debug=True)
