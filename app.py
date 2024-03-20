@@ -10,10 +10,41 @@ from flask import Flask, redirect, request, render_template, Response
 from flask_sslify import SSLify
 
 try:
-    opts, args = getopt.getopt(sys.argv[1:], "p:", ['port='])
+    opts, args = getopt.getopt(sys.argv[1:], "h:p:", ['host=', 'port='])
 except:
     opts = []
 
+
+def get_local_ip_addresses():
+    ip_addresses = []
+    # 获取本地主机名
+    hostname = socket.gethostname()
+    try:
+        # 获取主机名对应的所有IP地址
+        ip_addresses = socket.gethostbyname_ex(hostname)[-1]
+    except socket.gaierror:
+        pass
+    ip_addresses.append("127.0.0.1")
+    ip_addresses.append("localhost")
+    return ip_addresses
+
+def get_host():
+    host = '0'
+    ip_addresses = get_local_ip_addresses()
+    for op, value in opts:
+        if op in ("-h", "--host"):
+            host = value.strip()
+    if host in ip_addresses:
+        return host
+    else:
+        host = socket.gethostbyname(socket.gethostname())
+        if host.endswith(".1"):
+            for host in ip_addresses:
+                if not host.endswith(".1") and host != "localhost":
+                    return host
+        else:
+            return host
+    return "127.0.0.1"
 
 def find_unused_port():
     port = 1881
@@ -48,7 +79,7 @@ def find_unused_port():
     return port
 
 
-host = socket.gethostbyname(socket.gethostname())
+host = get_host()
 port = find_unused_port()
 app = Flask(__name__)
 sslify = SSLify(app)
@@ -126,4 +157,7 @@ def favicon():
 if __name__ == '__main__':
     context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
     context.load_cert_chain('./cert.pem', './key.pem')  # 替换为你的证书和私钥路径
+    # for ip in get_local_ip_addresses():
+    #     print(ip)
     app.run(host=host, port=port, ssl_context=context, debug=True)
+

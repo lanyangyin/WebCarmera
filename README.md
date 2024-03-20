@@ -53,44 +53,30 @@ openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 36
 ## 配置环境
 
 ```bash
+rem 更新pip
 python -m pip install -U pip -i https://pypi.tuna.tsinghua.edu.cn/simple
+rem 安装依赖
 python -m pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
 ## 启动
 
 ```base
-python app.py
+python app.py [-h host] [-p port]
 ```
-
-![image.png](doc/image.png)
-
 或
-
 ```base
-python app.py -p [port]
+python app.py [--host host] [--port port]
 ```
-
-![image.png](doc/image0.png)
-
-或
-
-```base
-python app.py --port [port]
-```
-
-![image.png](doc/image1.png)
-
-默认 port=1881，如果1881和输入的port都被占用时会随机一个port
-
-![image.png](doc/image2.png) ` `` `` `` `` ` ![image.png](doc/image2_.png)
+- []中的为选择性参数，可以不输入；不输入会按照默认值
+- 默认 host=本地非“.1”结尾的IP地址，输入的host不存在时会尝试默认，否则host=127.0.0.1
+- 默认port=1881，如果port的1881和输入的port都被占用时会随机一个port
 
 浏览器网址（可以不带url参数）：
 
 - https://host:port
-
-- https://host:port/server?c=int: 相机编号&r=int：旋转角度
-- https://host:port/client?r=int：旋转角度
+- https://host:port/server?c=相机编号: int&r=旋转角度: int
+- https://host:port/client?r=旋转角度: int
 
 ## 使用 ctrl+c 终止运行
 
